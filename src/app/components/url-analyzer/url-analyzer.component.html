@@ -1,0 +1,31 @@
+<form class="url-analyzer" [class.is-final]="variant === 'final'" (ngSubmit)="onSubmit()">
+  <div class="url-input-row">
+    <div class="url-input-wrap">
+      <i class="pi pi-globe url-icon"></i>
+      <input
+        type="text"
+        name="website-url"
+        class="url-input"
+        placeholder="https://example.com"
+        [(ngModel)]="url"
+        [ngModelOptions]="{ standalone: true }"
+        [disabled]="isAnalyzing()"
+        (input)="error.set('')"
+        autocomplete="off"
+        inputmode="url"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary btn-lg url-submit" [disabled]="isAnalyzing()">
+      <span *ngIf="!isAnalyzing()">Analyze Website</span>
+      <span *ngIf="isAnalyzing()"><i class="pi pi-spin pi-spinner"></i> Analyzing…</span>
+    </button>
+  </div>
+
+  <p class="url-error" *ngIf="error()">{{ error() }}</p>
+
+  <div class="url-trust-line" *ngIf="showTrustLine">
+    <span><i class="pi pi-check"></i> Free Preview</span>
+    <span><i class="pi pi-check"></i> No Login Required</span>
+    <span><i class="pi pi-check"></i> 2–5 Minute Analysis</span>
+  </div>
+</form>

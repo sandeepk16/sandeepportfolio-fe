@@ -34,6 +34,10 @@ export const routes: Routes = [
     loadComponent: () => import('./pages/contact/contact.component').then(m => m.ContactComponent)
   },
   {
+    path: 'ux-audit',
+    loadComponent: () => import('./pages/ux-audit/ux-audit.component').then(m => m.UxAuditComponent)
+  },
+  {
     path: 'blog',
     loadComponent: () => import('./pages/blog/blog.component').then(m => m.BlogComponent)
   },

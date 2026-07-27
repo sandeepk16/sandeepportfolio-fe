@@ -1,0 +1,665 @@
+.uxa-page {
+  background: var(--background-color);
+  color: var(--text-color);
+}
+
+.orange-text { color: var(--primary-color); }
+.blue-text { color: var(--accent-blue); }
+
+.uxa-section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text-color);
+  margin-bottom: 0.75rem;
+  max-width: 620px;
+}
+
+.uxa-section-sub {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 560px;
+  margin-bottom: 3rem;
+  line-height: 1.7;
+}
+
+// ===== HERO =====
+.uxa-hero {
+  padding: 6rem 0 5rem;
+  text-align: center;
+
+  .section-label { justify-content: center; }
+
+  .uxa-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5.5vw, 4.25rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    max-width: 900px;
+    margin: 0 auto 1.5rem;
+  }
+
+  .uxa-desc {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-light);
+    max-width: 620px;
+    margin: 0 auto 2.75rem;
+  }
+
+  .uxa-hero-input {
+    display: flex;
+    justify-content: center;
+
+    ::ng-deep .url-analyzer { width: 100%; }
+  }
+}
+
+// ===== HOW IT WORKS =====
+.uxa-how {
+  padding: var(--section-py) 0;
+
+  .uxa-how-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+
+    @media (max-width: 1024px) { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 560px) { grid-template-columns: 1fr; }
+  }
+
+  .uxa-how-card {
+    position: relative;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-xl);
+    padding: 2rem 1.5rem;
+    transition: var(--transition);
+
+    &:hover {
+      border-color: var(--primary-200);
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-2px);
+    }
+  }
+
+  .uxa-how-step {
+    position: absolute;
+    top: 1.25rem;
+    right: 1.5rem;
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--border-color);
+  }
+
+  .uxa-how-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: var(--border-radius-md);
+    background: var(--primary-50);
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .uxa-how-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .uxa-how-desc {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+}
+
+// ===== DELIVERABLES =====
+.uxa-deliverables {
+  padding: var(--section-py) 0;
+  background: var(--surface-color);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+
+  .uxa-deliverables-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+
+    @media (max-width: 900px) { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 560px) { grid-template-columns: 1fr; }
+  }
+
+  .uxa-deliverable-card {
+    padding: 1.75rem;
+    border-radius: var(--border-radius-lg);
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+
+    &:hover { border-color: var(--primary-200); }
+  }
+
+  .uxa-deliverable-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--border-radius-md);
+    background: rgba(27, 86, 199, 0.08);
+    color: var(--accent-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .uxa-deliverable-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .uxa-deliverable-desc {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+}
+
+// ===== FREE PREVIEW =====
+.uxa-preview {
+  padding: var(--section-py) 0;
+  scroll-margin-top: 90px;
+
+  .uxa-preview-panel {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 0;
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-2xl);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+
+    @media (max-width: 860px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .uxa-preview-top {
+    padding: 2.5rem;
+    border-right: 1px solid var(--border-light);
+
+    @media (max-width: 860px) { border-right: none; border-bottom: 1px solid var(--border-light); }
+  }
+
+  .uxa-score-gauge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2.25rem;
+  }
+
+  .uxa-score-ring {
+    width: 148px;
+    height: 148px;
+    border-radius: 50%;
+    background: conic-gradient(var(--primary-color) calc(var(--score) * 1%), var(--border-light) 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .uxa-score-ring-inner {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--surface-color);
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.15rem;
+  }
+
+  .uxa-score-num {
+    font-family: var(--font-display);
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--text-color);
+  }
+
+  .uxa-score-max {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .uxa-score-label {
+    margin-top: 1rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .uxa-category-scores {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+
+  .uxa-category-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.4rem;
+    font-size: 0.85rem;
+  }
+
+  .uxa-category-label { font-weight: 600; color: var(--text-color); }
+  .uxa-category-value { font-weight: 700; color: var(--primary-color); }
+
+  .uxa-category-bar {
+    height: 6px;
+    border-radius: 100px;
+    background: var(--border-light);
+    overflow: hidden;
+  }
+
+  .uxa-category-fill {
+    height: 100%;
+    border-radius: 100px;
+    background: var(--accent-blue);
+  }
+
+  .uxa-preview-priorities {
+    padding: 2.5rem;
+    background: var(--background-color);
+  }
+
+  .uxa-priorities-heading {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+  }
+
+  .uxa-priority-card {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg);
+    padding: 1.25rem 1.4rem;
+    margin-bottom: 0.9rem;
+
+    &:last-child { margin-bottom: 0; }
+  }
+
+  .uxa-severity-tag {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+
+    &.high { background: rgba(220, 38, 38, 0.1); color: #dc2626; }
+    &.medium { background: var(--primary-100); color: var(--primary-dark); }
+  }
+
+  .uxa-priority-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+  }
+
+  .uxa-priority-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .uxa-unlock-box {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    background: var(--dark-bg);
+    color: #fff;
+    border-radius: var(--border-radius-2xl);
+    padding: 2.25rem 2.5rem;
+
+    @media (max-width: 640px) {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 2rem;
+    }
+  }
+
+  .uxa-unlock-note {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.55);
+    margin-bottom: 0.4rem;
+  }
+
+  .uxa-unlock-heading {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  .uxa-unlock-right {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    flex-shrink: 0;
+
+    @media (max-width: 640px) { width: 100%; justify-content: space-between; }
+  }
+
+  .uxa-price {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 800;
+  }
+}
+
+// ===== REPORT CONTENTS =====
+.uxa-report-contents {
+  padding: var(--section-py) 0;
+  background: var(--surface-color);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+
+  .uxa-report-doc {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--background-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-xl);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+  }
+
+  .uxa-report-doc-header {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 1rem 1.5rem;
+    background: var(--surface-color);
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .uxa-report-doc-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--border-color);
+  }
+
+  .uxa-report-doc-name {
+    margin-left: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .uxa-report-list {
+    list-style: none;
+    padding: 0.5rem 0;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.9rem 1.75rem;
+      border-bottom: 1px solid var(--border-light);
+      font-size: 0.95rem;
+
+      &:last-child { border-bottom: none; }
+    }
+  }
+
+  .uxa-report-num {
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 0.85rem;
+    width: 1.5rem;
+  }
+
+  .uxa-report-title { font-weight: 600; }
+}
+
+// ===== WHY TRUST ME =====
+.uxa-trust {
+  padding: var(--section-py) 0;
+
+  .uxa-trust-inner {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 3rem;
+    align-items: center;
+
+    @media (max-width: 860px) { grid-template-columns: 1fr; }
+  }
+
+  .uxa-desc {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+  }
+
+  .uxa-trust-link {
+    font-weight: 700;
+    color: var(--accent-blue);
+    text-decoration: none;
+
+    &:hover { text-decoration: underline; }
+  }
+
+  .uxa-trust-right {
+    background: var(--surface-color);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-2xl);
+    padding: 2.5rem;
+  }
+
+  .uxa-trust-years {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+  }
+
+  .uxa-trust-years-num {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .uxa-trust-years-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-top: 0.35rem;
+  }
+
+  .uxa-credential-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .uxa-credential-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-light);
+    font-weight: 600;
+    font-size: 0.95rem;
+
+    &:first-child { border-top: none; padding-top: 0; }
+
+    i { color: var(--primary-color); font-size: 1rem; }
+  }
+}
+
+// ===== EXPERT UX REVIEW =====
+.uxa-expert {
+  padding: var(--section-py) 0;
+
+  .uxa-expert-box {
+    background: var(--dark-bg);
+    color: #fff;
+    border-radius: var(--border-radius-2xl);
+    padding: 3.5rem;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3rem;
+    align-items: center;
+
+    @media (max-width: 860px) {
+      grid-template-columns: 1fr;
+      padding: 2.5rem 1.75rem;
+    }
+  }
+
+  .uxa-expert-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+  }
+
+  .uxa-expert-desc {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 2rem;
+    max-width: 460px;
+  }
+
+  .uxa-expert-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .uxa-expert-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+
+    i { color: var(--primary-color); font-size: 1.05rem; }
+  }
+}
+
+// ===== FAQ =====
+.uxa-faq {
+  padding: var(--section-py) 0;
+
+  .uxa-faq-list {
+    max-width: 760px;
+    margin-top: 1rem;
+  }
+
+  .uxa-faq-item {
+    border-bottom: 1px solid var(--border-color);
+
+    &:first-child { border-top: 1px solid var(--border-color); }
+  }
+
+  .uxa-faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.5rem 0.25rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-color);
+
+    i { color: var(--text-muted); font-size: 0.85rem; flex-shrink: 0; }
+  }
+
+  .uxa-faq-item.open .uxa-faq-question i { color: var(--primary-color); }
+
+  .uxa-faq-answer {
+    padding: 0 1.5rem 1.5rem 0.25rem;
+
+    p {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+      max-width: 640px;
+    }
+  }
+}
+
+// ===== FINAL CTA =====
+.uxa-final-cta-section {
+  padding: 1rem 0 var(--section-py);
+}
+
+.uxa-final-cta {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .uxa-final-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+
+  .uxa-final-heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    max-width: 600px;
+  }
+
+  .uxa-final-desc {
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 2.25rem;
+  }
+
+  .uxa-final-input {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    ::ng-deep .url-analyzer { width: 100%; max-width: 560px; }
+  }
+}

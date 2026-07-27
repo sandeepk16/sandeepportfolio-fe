@@ -31,6 +31,10 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Prerender
   },
   {
+    path: 'ux-audit',
+    renderMode: RenderMode.Prerender
+  },
+  {
     path: 'blog',
     renderMode: RenderMode.Prerender
   },

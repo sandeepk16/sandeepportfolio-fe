@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit {
     this.menuItems = [
       { label: 'About', routerLink: ['/about'] },
       { label: 'Services', routerLink: ['/services'] },
+      // { label: 'UX Audit', routerLink: ['/ux-audit'] },
       { label: 'Work', routerLink: ['/portfolio'] },
       { label: 'Experience', routerLink: ['/experience'] },
       { label: 'Blog', routerLink: ['/blog'] }

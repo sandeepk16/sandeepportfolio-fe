@@ -1,0 +1,235 @@
+<div class="uxa-page">
+
+  <!-- ===== HERO ===== -->
+  <section class="uxa-hero">
+    <div class="container">
+      <p class="section-label">AI-ASSISTED UX AUDIT</p>
+      <h1 class="uxa-heading">
+        Know What to Fix <span class="orange-text">Before You Redesign.</span>
+      </h1>
+      <p class="uxa-desc">
+        Receive a structured UX audit of your website — automated analysis paired with
+        16+ years of hands-on UX consulting, so you invest in the changes that actually matter.
+      </p>
+
+      <div class="uxa-hero-input">
+        <app-url-analyzer (analyzed)="onAnalyzed($event)"></app-url-analyzer>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW IT WORKS ===== -->
+  <section class="uxa-how">
+    <div class="container">
+      <p class="section-label">HOW IT WORKS</p>
+      <h2 class="uxa-section-heading">From URL to action plan in minutes.</h2>
+
+      <div class="uxa-how-grid">
+        <div class="uxa-how-card" *ngFor="let step of processSteps">
+          <span class="uxa-how-step">{{ step.step }}</span>
+          <div class="uxa-how-icon"><i [class]="'pi ' + step.icon"></i></div>
+          <h3 class="uxa-how-title">{{ step.title }}</h3>
+          <p class="uxa-how-desc">{{ step.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHAT YOU'LL RECEIVE ===== -->
+  <section class="uxa-deliverables">
+    <div class="container">
+      <p class="section-label">WHAT YOU'LL RECEIVE</p>
+      <h2 class="uxa-section-heading">A complete picture of your website's UX.</h2>
+      <p class="uxa-section-sub">
+        Every audit is structured around the questions that actually drive decisions —
+        not a generic checklist.
+      </p>
+
+      <div class="uxa-deliverables-grid">
+        <div class="uxa-deliverable-card" *ngFor="let item of deliverables">
+          <div class="uxa-deliverable-icon"><i [class]="'pi ' + item.icon"></i></div>
+          <h3 class="uxa-deliverable-title">{{ item.title }}</h3>
+          <p class="uxa-deliverable-desc">{{ item.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FREE PREVIEW ===== -->
+  <section class="uxa-preview" #previewSection>
+    <div class="container">
+      <p class="section-label">FREE PREVIEW</p>
+      <h2 class="uxa-section-heading">See it before you unlock it.</h2>
+      <p class="uxa-section-sub">
+        Sample preview for <strong>{{ displayUrl() }}</strong> — this is the level of detail
+        every free preview includes.
+      </p>
+
+      <div class="uxa-preview-panel">
+        <div class="uxa-preview-top">
+          <div class="uxa-score-gauge">
+            <div class="uxa-score-ring" style="--score: 79">
+              <div class="uxa-score-ring-inner">
+                <span class="uxa-score-num">79</span>
+                <span class="uxa-score-max">/100</span>
+              </div>
+            </div>
+            <span class="uxa-score-label">Overall UX Score</span>
+          </div>
+
+          <div class="uxa-category-scores">
+            <div class="uxa-category-row" *ngFor="let cat of categoryScores">
+              <div class="uxa-category-top">
+                <span class="uxa-category-label">{{ cat.label }}</span>
+                <span class="uxa-category-value">{{ cat.score }}</span>
+              </div>
+              <div class="uxa-category-bar">
+                <div class="uxa-category-fill" [style.width.%]="cat.score"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="uxa-preview-priorities">
+          <h3 class="uxa-priorities-heading">Top 3 Priorities</h3>
+          <div class="uxa-priority-card" *ngFor="let p of topPriorities">
+            <span class="uxa-severity-tag" [class.high]="p.severity === 'high'" [class.medium]="p.severity === 'medium'">
+              {{ p.severity === 'high' ? 'High Impact' : 'Medium Impact' }}
+            </span>
+            <h4 class="uxa-priority-title">{{ p.title }}</h4>
+            <p class="uxa-priority-desc">{{ p.description }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="uxa-unlock-box">
+        <div class="uxa-unlock-left">
+          <p class="uxa-unlock-note">+30 additional findings available in the complete report</p>
+          <h3 class="uxa-unlock-heading">Unlock the Full Report</h3>
+        </div>
+        <div class="uxa-unlock-right">
+          <span class="uxa-price">₹999</span>
+          <button class="btn btn-primary btn-lg">Unlock Full Report</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHAT'S INSIDE THE COMPLETE REPORT ===== -->
+  <section class="uxa-report-contents">
+    <div class="container">
+      <p class="section-label">THE COMPLETE REPORT</p>
+      <h2 class="uxa-section-heading">What's inside, section by section.</h2>
+      <p class="uxa-section-sub">
+        A document built to be read by founders and acted on by developers.
+      </p>
+
+      <div class="uxa-report-doc">
+        <div class="uxa-report-doc-header">
+          <span class="uxa-report-doc-dot"></span>
+          <span class="uxa-report-doc-dot"></span>
+          <span class="uxa-report-doc-dot"></span>
+          <span class="uxa-report-doc-name">UX-Audit-Report.pdf</span>
+        </div>
+        <ol class="uxa-report-list">
+          <li *ngFor="let section of reportSections; let i = index">
+            <span class="uxa-report-num">{{ i + 1 }}</span>
+            <span class="uxa-report-title">{{ section.title }}</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY TRUST ME ===== -->
+  <section class="uxa-trust hidden">
+    <div class="container">
+      <div class="uxa-trust-inner">
+        <div class="uxa-trust-left">
+          <p class="section-label">WHY TRUST ME</p>
+          <h2 class="uxa-section-heading">Experience drives the recommendations.</h2>
+          <p class="uxa-desc">
+            I've spent 16+ years as a UX consultant, product designer and front-end developer,
+            working across enterprise platforms and early-stage startup products. AI accelerates
+            how quickly a website can be analyzed — it doesn't replace the judgment behind what
+            to prioritize, or why.
+          </p>
+          <a routerLink="/about" class="uxa-trust-link">See my full background &rarr;</a>
+        </div>
+
+        <div class="uxa-trust-right">
+          <div class="uxa-trust-years">
+            <span class="uxa-trust-years-num orange-text">16+</span>
+            <span class="uxa-trust-years-label">Years of Experience</span>
+          </div>
+          <div class="uxa-credential-list">
+            <div class="uxa-credential-item" *ngFor="let c of credentials">
+              <i [class]="'pi ' + c.icon"></i>
+              <span>{{ c.label }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXPERT UX REVIEW ===== -->
+  <section class="uxa-expert">
+    <div class="container">
+      <div class="uxa-expert-box">
+        <div class="uxa-expert-left">
+          <p class="section-label" style="color: rgba(255,255,255,0.6)">EXPERT UX REVIEW</p>
+          <h2 class="uxa-expert-heading">Need help implementing these recommendations?</h2>
+          <p class="uxa-expert-desc">
+            An audit tells you what to fix. An Expert UX Review helps you actually fix it —
+            with me involved directly, not just a report in your inbox.
+          </p>
+          <a routerLink="/contact" class="btn btn-primary btn-lg">Book Consultation</a>
+        </div>
+        <div class="uxa-expert-right">
+          <div class="uxa-expert-item" *ngFor="let item of expertReviewIncludes">
+            <i class="pi pi-check-circle"></i>
+            <span>{{ item }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="uxa-faq">
+    <div class="container">
+      <p class="section-label">FAQ</p>
+      <h2 class="uxa-section-heading">Questions worth answering upfront.</h2>
+
+      <div class="uxa-faq-list">
+        <div class="uxa-faq-item" *ngFor="let faq of faqs" [class.open]="faq.open">
+          <button class="uxa-faq-question" (click)="toggleFaq(faq)">
+            <span>{{ faq.question }}</span>
+            <i class="pi" [class.pi-plus]="!faq.open" [class.pi-minus]="faq.open"></i>
+          </button>
+          <div class="uxa-faq-answer" *ngIf="faq.open">
+            <p>{{ faq.answer }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FINAL CTA ===== -->
+  <section class="uxa-final-cta-section">
+    <div class="container">
+      <div class="dark-cta uxa-final-cta">
+        <p class="uxa-final-eyebrow">READY TO IMPROVE YOUR WEBSITE?</p>
+        <h2 class="uxa-final-heading">See what's holding your website back.</h2>
+        <p class="uxa-final-desc">
+          Free preview. No login. Results in minutes.
+        </p>
+        <div class="uxa-final-input">
+          <app-url-analyzer [showTrustLine]="false" variant="final" (analyzed)="onAnalyzed($event)"></app-url-analyzer>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
