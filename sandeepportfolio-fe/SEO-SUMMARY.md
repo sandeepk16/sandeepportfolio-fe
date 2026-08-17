@@ -161,7 +161,7 @@ After deployment:
 # Build with SSR
 npm run build
 
-# The build output is at: dist/sandeep-portfolio/
+# The build output is at: dist/sandeepportfolio-fe/
 
 # Check that sitemap.xml and robots.txt are in the root of the build output
 ```
@@ -203,6 +203,6 @@ Full implementation details are available in:
 ---
 
 **Server Running**: http://localhost:4200/
-**Build Output**: dist/sandeep-portfolio/
+**Build Output**: dist/sandeepportfolio-fe/
 
 Ready for production deployment! 🎉

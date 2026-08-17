@@ -7,7 +7,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "sandeep-portfolio": {
+    "sandeepportfolio-fe": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -21,7 +21,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/sandeep-portfolio",
+            "outputPath": "dist/sandeepportfolio-fe",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "server": "src/main.server.ts",
@@ -84,10 +84,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "sandeep-portfolio:build:production"
+              "buildTarget": "sandeepportfolio-fe:build:production"
             },
             "development": {
-              "buildTarget": "sandeep-portfolio:build:development"
+              "buildTarget": "sandeepportfolio-fe:build:development"
             }
           },
           "defaultConfiguration": "development"
