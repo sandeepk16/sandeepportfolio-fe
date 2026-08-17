@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "ng build --configuration production --output-hashing=all",
+  "buildCommand": "npx ng build --configuration production --output-hashing=all",
   "outputDirectory": "dist/sandeep-portfolio/browser",
   "framework": null,
   "rewrites": [
