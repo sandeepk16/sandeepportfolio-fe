@@ -316,8 +316,10 @@
     text-transform: uppercase;
     margin-bottom: 0.6rem;
 
+    &.critical { background: rgba(153, 27, 27, 0.12); color: #991b1b; }
     &.high { background: rgba(220, 38, 38, 0.1); color: #dc2626; }
     &.medium { background: var(--primary-100); color: var(--primary-dark); }
+    &.low { background: var(--border-light); color: var(--text-muted); }
   }
 
   .uxa-priority-title {

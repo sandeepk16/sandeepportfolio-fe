@@ -9,23 +9,25 @@
         placeholder="https://example.com"
         [(ngModel)]="url"
         [ngModelOptions]="{ standalone: true }"
-        [disabled]="isAnalyzing()"
-        (input)="error.set('')"
+        [disabled]="isAnalyzing"
+        (input)="onInputChange()"
         autocomplete="off"
         inputmode="url"
       />
     </div>
-    <button type="submit" class="btn btn-primary btn-lg url-submit" [disabled]="isAnalyzing()">
-      <span *ngIf="!isAnalyzing()">Analyze Website</span>
-      <span *ngIf="isAnalyzing()"><i class="pi pi-spin pi-spinner"></i> Analyzing…</span>
+    <button type="submit" class="btn btn-primary btn-lg url-submit" [disabled]="isAnalyzing">
+      <span *ngIf="!isAnalyzing">Analyze Website</span>
+      <span *ngIf="isAnalyzing"><i class="pi pi-spin pi-spinner"></i> Analyzing…</span>
     </button>
   </div>
+
+  <p class="url-progress" *ngIf="state() === 'analyzing'">{{ progressMessage() }}</p>
 
   <p class="url-error" *ngIf="error()">{{ error() }}</p>
 
   <div class="url-trust-line" *ngIf="showTrustLine">
     <span><i class="pi pi-check"></i> Free Preview</span>
     <span><i class="pi pi-check"></i> No Login Required</span>
-    <span><i class="pi pi-check"></i> 2–5 Minute Analysis</span>
+    <span><i class="pi pi-check"></i> Real Website Analysis</span>
   </div>
 </form>

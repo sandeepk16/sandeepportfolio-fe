@@ -1,9 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild, inject, signal } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { UrlAnalyzerComponent } from '../../components/url-analyzer/url-analyzer.component';
 import { SEOService } from '../../services/seo.service';
+import { AuditResult } from '../../services/ux-audit.service';
 
 interface ProcessStep {
   step: string;
@@ -21,12 +22,6 @@ interface DeliverableItem {
 interface CategoryScore {
   label: string;
   score: number;
-}
-
-interface PriorityFinding {
-  severity: 'high' | 'medium';
-  title: string;
-  description: string;
 }
 
 interface ReportSection {
@@ -51,7 +46,29 @@ export class UxAuditComponent implements OnInit {
 
   @ViewChild('previewSection') previewSection?: ElementRef<HTMLElement>;
 
-  analyzedUrl = signal<string | null>(null);
+  // Populated by the real audit pipeline once app-url-analyzer emits a
+  // completed AuditResult — no hardcoded preview data anymore.
+  auditResult = signal<AuditResult | null>(null);
+
+  readonly categoryLabels: Record<keyof AuditResult['categories'], string> = {
+    navigation: 'Navigation',
+    accessibility: 'Accessibility',
+    mobile: 'Mobile',
+    visualHierarchy: 'Visual Hierarchy',
+    conversion: 'Conversion',
+    content: 'Content'
+  };
+
+  categoryScores = computed<CategoryScore[]>(() => {
+    const result = this.auditResult();
+    if (!result) return [];
+    return (Object.keys(this.categoryLabels) as Array<keyof AuditResult['categories']>).map((key) => ({
+      label: this.categoryLabels[key],
+      score: result.categories[key]
+    }));
+  });
+
+  topPriorities = computed(() => this.auditResult()?.topPriorities ?? []);
 
   readonly processSteps: ProcessStep[] = [
     {
@@ -90,20 +107,6 @@ export class UxAuditComponent implements OnInit {
     { icon: 'pi-briefcase', title: 'Business Impact', description: 'What each issue is likely costing you in leads or sales.' },
     { icon: 'pi-clock', title: 'Implementation Estimate', description: 'Realistic effort and timeline for your team or mine.' },
     { icon: 'pi-file-pdf', title: 'Professional PDF', description: 'A shareable document for founders, stakeholders and developers.' }
-  ];
-
-  readonly categoryScores: CategoryScore[] = [
-    { label: 'Navigation', score: 74 },
-    { label: 'Accessibility', score: 68 },
-    { label: 'Mobile', score: 81 },
-    { label: 'Visual Hierarchy', score: 79 },
-    { label: 'Conversion', score: 71 }
-  ];
-
-  readonly topPriorities: PriorityFinding[] = [
-    { severity: 'high', title: 'Homepage CTA', description: 'Primary action is competing with three other buttons above the fold.' },
-    { severity: 'high', title: 'Navigation Complexity', description: 'Main menu has 9 items — most visitors scan no more than 5.' },
-    { severity: 'medium', title: 'Trust Signals', description: 'No visible proof (reviews, clients, credentials) near key decision points.' }
   ];
 
   readonly reportSections: ReportSection[] = [
@@ -215,8 +218,8 @@ export class UxAuditComponent implements OnInit {
     });
   }
 
-  onAnalyzed(url: string): void {
-    this.analyzedUrl.set(url);
+  onAnalyzed(result: AuditResult): void {
+    this.auditResult.set(result);
     setTimeout(() => {
       this.previewSection?.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 50);
@@ -227,8 +230,8 @@ export class UxAuditComponent implements OnInit {
   }
 
   displayUrl(): string {
-    const url = this.analyzedUrl();
-    if (!url) return 'your website';
-    return url.replace(/^https?:\/\//, '');
+    const website = this.auditResult()?.website;
+    if (!website) return 'your website';
+    return website.replace(/^https?:\/\//, '');
   }
 }

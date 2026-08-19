@@ -64,6 +64,13 @@
     }
   }
 
+  .url-progress {
+    margin-top: 0.6rem;
+    margin-left: 1.25rem;
+    font-size: 0.8rem;
+    color: var(--text-light);
+  }
+
   .url-error {
     margin-top: 0.6rem;
     margin-left: 1.25rem;
@@ -106,6 +113,8 @@
     }
 
     .url-icon { color: rgba(255, 255, 255, 0.5); }
+
+    .url-progress { color: rgba(255, 255, 255, 0.65); }
 
     .url-error { color: #ff9d8a; }
   }

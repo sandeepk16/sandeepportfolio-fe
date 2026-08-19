@@ -60,58 +60,79 @@
     <div class="container">
       <p class="section-label">FREE PREVIEW</p>
       <h2 class="uxa-section-heading">See it before you unlock it.</h2>
-      <p class="uxa-section-sub">
-        Sample preview for <strong>{{ displayUrl() }}</strong> — this is the level of detail
-        every free preview includes.
-      </p>
 
-      <div class="uxa-preview-panel">
-        <div class="uxa-preview-top">
-          <div class="uxa-score-gauge">
-            <div class="uxa-score-ring" style="--score: 79">
-              <div class="uxa-score-ring-inner">
-                <span class="uxa-score-num">79</span>
-                <span class="uxa-score-max">/100</span>
+      <ng-container *ngIf="auditResult() as result; else noResultYet">
+        <p class="uxa-section-sub">
+          Real preview for <strong>{{ displayUrl() }}</strong> —
+          {{ result.screensReviewed }} {{ result.screensReviewed === 1 ? 'screen' : 'screens' }} reviewed,
+          this is the level of detail every free preview includes.
+        </p>
+
+        <div class="uxa-preview-panel">
+          <div class="uxa-preview-top">
+            <div class="uxa-score-gauge">
+              <div class="uxa-score-ring" [style.--score]="result.overallScore">
+                <div class="uxa-score-ring-inner">
+                  <span class="uxa-score-num">{{ result.overallScore }}</span>
+                  <span class="uxa-score-max">/100</span>
+                </div>
+              </div>
+              <span class="uxa-score-label">Overall UX Score</span>
+            </div>
+
+            <div class="uxa-category-scores">
+              <div class="uxa-category-row" *ngFor="let cat of categoryScores()">
+                <div class="uxa-category-top">
+                  <span class="uxa-category-label">{{ cat.label }}</span>
+                  <span class="uxa-category-value">{{ cat.score }}</span>
+                </div>
+                <div class="uxa-category-bar">
+                  <div class="uxa-category-fill" [style.width.%]="cat.score"></div>
+                </div>
               </div>
             </div>
-            <span class="uxa-score-label">Overall UX Score</span>
           </div>
 
-          <div class="uxa-category-scores">
-            <div class="uxa-category-row" *ngFor="let cat of categoryScores">
-              <div class="uxa-category-top">
-                <span class="uxa-category-label">{{ cat.label }}</span>
-                <span class="uxa-category-value">{{ cat.score }}</span>
-              </div>
-              <div class="uxa-category-bar">
-                <div class="uxa-category-fill" [style.width.%]="cat.score"></div>
-              </div>
+          <div class="uxa-preview-priorities">
+            <h3 class="uxa-priorities-heading">Top {{ topPriorities().length }} Priorities</h3>
+            <div class="uxa-priority-card" *ngFor="let p of topPriorities()">
+              <span
+                class="uxa-severity-tag"
+                [class.critical]="p.severity === 'Critical'"
+                [class.high]="p.severity === 'High'"
+                [class.medium]="p.severity === 'Medium'"
+                [class.low]="p.severity === 'Low'"
+              >
+                {{ p.severity }} Impact
+              </span>
+              <h4 class="uxa-priority-title">{{ p.title }}</h4>
+              <p class="uxa-priority-desc">{{ p.recommendation }}</p>
             </div>
           </div>
         </div>
 
-        <div class="uxa-preview-priorities">
-          <h3 class="uxa-priorities-heading">Top 3 Priorities</h3>
-          <div class="uxa-priority-card" *ngFor="let p of topPriorities">
-            <span class="uxa-severity-tag" [class.high]="p.severity === 'high'" [class.medium]="p.severity === 'medium'">
-              {{ p.severity === 'high' ? 'High Impact' : 'Medium Impact' }}
-            </span>
-            <h4 class="uxa-priority-title">{{ p.title }}</h4>
-            <p class="uxa-priority-desc">{{ p.description }}</p>
+        <div class="uxa-unlock-box">
+          <div class="uxa-unlock-left">
+            <p class="uxa-unlock-note" *ngIf="result.additionalFindingsCount as count; else genericFindingsNote">
+              +{{ count }} additional findings available in the complete report
+            </p>
+            <ng-template #genericFindingsNote>
+              <p class="uxa-unlock-note">Additional findings available in the complete report.</p>
+            </ng-template>
+            <h3 class="uxa-unlock-heading">Unlock the Full Report</h3>
+          </div>
+          <div class="uxa-unlock-right">
+            <span class="uxa-price">₹999</span>
+            <button class="btn btn-primary btn-lg">Unlock Full Report</button>
           </div>
         </div>
-      </div>
+      </ng-container>
 
-      <div class="uxa-unlock-box">
-        <div class="uxa-unlock-left">
-          <p class="uxa-unlock-note">+30 additional findings available in the complete report</p>
-          <h3 class="uxa-unlock-heading">Unlock the Full Report</h3>
-        </div>
-        <div class="uxa-unlock-right">
-          <span class="uxa-price">₹999</span>
-          <button class="btn btn-primary btn-lg">Unlock Full Report</button>
-        </div>
-      </div>
+      <ng-template #noResultYet>
+        <p class="uxa-section-sub">
+          Enter your website URL above and this section will fill in with a real, live preview of your audit.
+        </p>
+      </ng-template>
     </div>
   </section>
 
