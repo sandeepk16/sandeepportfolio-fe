@@ -62,11 +62,10 @@
       <h2 class="uxa-section-heading">See it before you unlock it.</h2>
 
       <ng-container *ngIf="auditResult() as result; else noResultYet">
-        <p class="uxa-section-sub">
-          Real preview for <strong>{{ displayUrl() }}</strong> —
-          {{ result.screensReviewed }} {{ result.screensReviewed === 1 ? 'screen' : 'screens' }} reviewed,
-          this is the level of detail every free preview includes.
-        </p>
+        <div class="uxa-preview-meta">
+          <p class="uxa-preview-meta-url">Website: <strong>{{ displayUrl() }}</strong></p>
+          <p class="uxa-preview-meta-scope">Homepage reviewed &middot; Desktop + Mobile</p>
+        </div>
 
         <div class="uxa-preview-panel">
           <div class="uxa-preview-top">
@@ -94,36 +93,52 @@
           </div>
 
           <div class="uxa-preview-priorities">
-            <h3 class="uxa-priorities-heading">Top {{ topPriorities().length }} Priorities</h3>
-            <div class="uxa-priority-card" *ngFor="let p of topPriorities()">
-              <span
-                class="uxa-severity-tag"
-                [class.critical]="p.severity === 'Critical'"
-                [class.high]="p.severity === 'High'"
-                [class.medium]="p.severity === 'Medium'"
-                [class.low]="p.severity === 'Low'"
-              >
-                {{ p.severity }} Impact
-              </span>
+            <h3 class="uxa-priorities-heading">Top 5 Priorities</h3>
+            <div class="uxa-priority-card" *ngFor="let p of topPriorities(); let i = index">
+              <div class="uxa-priority-top">
+                <span class="uxa-priority-num">{{ i + 1 | number: '2.0-0' }}</span>
+                <span
+                  class="uxa-severity-tag"
+                  [class.critical]="p.severity === 'Critical'"
+                  [class.high]="p.severity === 'High'"
+                  [class.medium]="p.severity === 'Medium'"
+                  [class.low]="p.severity === 'Low'"
+                >
+                  {{ p.severity }} Impact
+                </span>
+              </div>
               <h4 class="uxa-priority-title">{{ p.title }}</h4>
-              <p class="uxa-priority-desc">{{ p.recommendation }}</p>
+              <p class="uxa-priority-impact"><strong>Business impact:</strong> {{ p.businessImpact }}</p>
+              <p class="uxa-priority-desc"><strong>Recommendation:</strong> {{ p.recommendation }}</p>
             </div>
           </div>
         </div>
 
         <div class="uxa-unlock-box">
-          <div class="uxa-unlock-left">
-            <p class="uxa-unlock-note" *ngIf="result.additionalFindingsCount as count; else genericFindingsNote">
-              +{{ count }} additional findings available in the complete report
-            </p>
-            <ng-template #genericFindingsNote>
-              <p class="uxa-unlock-note">Additional findings available in the complete report.</p>
-            </ng-template>
-            <h3 class="uxa-unlock-heading">Unlock the Full Report</h3>
-          </div>
-          <div class="uxa-unlock-right">
-            <span class="uxa-price">₹999</span>
-            <button class="btn btn-primary btn-lg">Unlock Full Report</button>
+          <p class="uxa-unlock-eyebrow">There's more to fix.</p>
+          <p class="uxa-unlock-copy">
+            Your free preview shows the highest-priority issues. The complete audit identifies the
+            remaining usability, accessibility, conversion, mobile and interaction issues — with
+            implementation guidance.
+          </p>
+
+          <div class="uxa-unlock-body">
+            <ul class="uxa-unlock-checklist">
+              <li *ngFor="let item of unlockChecklist">
+                <i class="pi pi-check"></i>
+                <span>{{ item }}</span>
+              </li>
+            </ul>
+
+            <div class="uxa-unlock-cta">
+              <button class="btn btn-primary btn-lg">Unlock Complete UX Audit — ₹999</button>
+              <p class="uxa-unlock-note" *ngIf="result.additionalFindingsCount as count; else genericFindingsNote">
+                {{ count }} additional findings are available in the complete report.
+              </p>
+              <ng-template #genericFindingsNote>
+                <p class="uxa-unlock-note">Additional findings are available in the complete report.</p>
+              </ng-template>
+            </div>
           </div>
         </div>
       </ng-container>

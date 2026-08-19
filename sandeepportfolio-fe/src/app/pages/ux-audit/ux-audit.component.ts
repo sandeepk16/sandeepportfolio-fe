@@ -68,7 +68,20 @@ export class UxAuditComponent implements OnInit {
     }));
   });
 
-  topPriorities = computed(() => this.auditResult()?.topPriorities ?? []);
+  // The backend always returns exactly 5 (see audit.schema.ts) — sliced here
+  // too so the "Top 5 Priorities" heading can never drift from what's shown.
+  topPriorities = computed(() => (this.auditResult()?.topPriorities ?? []).slice(0, 5));
+
+  readonly unlockChecklist: string[] = [
+    'Detailed findings',
+    'Business impact',
+    'Recommended solution',
+    'Priority matrix',
+    'UX effort estimation',
+    'Development effort estimation',
+    'Screens & flows reviewed',
+    'Implementation roadmap'
+  ];
 
   readonly processSteps: ProcessStep[] = [
     {
